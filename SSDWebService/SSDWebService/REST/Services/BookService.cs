@@ -1,16 +1,12 @@
 ﻿using SSDWebService.Models;
 using SSDWebService.REST.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
 
 namespace SSDWebService.REST.Services
 {
-    public class BookService : IBook
+    public class BookService : BaseService
     {
-        public bool Delete(out object resultData)
+        public override bool Delete(out object resultData)
         {
             try
             {
@@ -24,7 +20,7 @@ namespace SSDWebService.REST.Services
             }
         }
 
-        public bool Delete(string id, out object resultData)
+        public override bool Delete(string id, out object resultData)
         {
             try
             {
@@ -38,7 +34,7 @@ namespace SSDWebService.REST.Services
             }
         }
 
-        public bool Get(out object resultData)
+        public override bool Get(out object resultData)
         {
             try
             {
@@ -52,7 +48,7 @@ namespace SSDWebService.REST.Services
             }
         }
 
-        public bool Get(string id, out object resultData)
+        public override bool Get(string id, out object resultData)
         {
             try
             {
@@ -73,7 +69,7 @@ namespace SSDWebService.REST.Services
             }
         }
 
-        public bool Post(object data, out object resultData)
+        public override bool Post(object data, out object resultData)
         {
             try
             {
@@ -106,7 +102,7 @@ namespace SSDWebService.REST.Services
             }
         }
 
-        public bool Put(string id, object data, out object resultData)
+        public override bool Put(string id, object data, out object resultData)
         {
             try
             {

@@ -171,20 +171,42 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Controllers\AuthorsController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
+    <Compile Include="Controllers\BorrowsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DBConnection.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\authors.cs" />
     <Compile Include="Models\books.cs" />
+    <Compile Include="Models\borrows.cs" />
     <Compile Include="Models\ResponseModel.cs" />
+    <Compile Include="Models\roles.cs" />
+    <Compile Include="Models\students.cs" />
+    <Compile Include="Models\types.cs" />
+    <Compile Include="Models\users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="REST\Interfaces\IBase.cs" />
-    <Compile Include="REST\Interfaces\IBook.cs" />
+    <Compile Include="REST\Managers\AuthorManager.cs" />
+    <Compile Include="REST\Managers\BaseManager.cs" />
     <Compile Include="REST\Managers\BookManager.cs" />
+    <Compile Include="REST\Managers\BorrowManager.cs" />
+    <Compile Include="REST\Managers\RoleManager.cs" />
+    <Compile Include="REST\Managers\StudentManager.cs" />
+    <Compile Include="REST\Managers\TypeManager.cs" />
+    <Compile Include="REST\Managers\UserManager.cs" />
+    <Compile Include="REST\Services\AuthorService.cs" />
+    <Compile Include="REST\Services\BaseService.cs" />
     <Compile Include="REST\Services\BookService.cs" />
+    <Compile Include="REST\Services\BorrowService.cs" />
+    <Compile Include="REST\Services\RoleService.cs" />
+    <Compile Include="REST\Services\StudentService.cs" />
+    <Compile Include="REST\Services\TypeService.cs" />
+    <Compile Include="REST\Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
