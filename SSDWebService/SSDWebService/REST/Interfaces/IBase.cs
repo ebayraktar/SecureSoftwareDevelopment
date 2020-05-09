@@ -10,11 +10,11 @@ namespace SSDWebService.REST.Interfaces
 {
     public interface IBase
     {
-        bool Get(out object resultData);
-        bool Get(string id, out object resultData);
+        bool Get<T>(out object resultData) where T : new();
+        bool Get<T>(string id, out object resultData) where T : new();
         bool Post(object data, out object resultData);
         bool Put(string id, object data, out object resultData);
-        bool Delete(out object resultData);
-        bool Delete(string id, out object resultData);
+        bool Delete<T>(out object resultData);
+        bool Delete<T>(string id, out object resultData);
     }
 }

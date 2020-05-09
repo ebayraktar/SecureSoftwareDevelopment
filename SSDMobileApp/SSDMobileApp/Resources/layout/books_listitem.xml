@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:layout_marginTop="2dp"
+    android:layout_marginBottom="2dp"
+    app:cardCornerRadius="8dp"
+    app:cardBackgroundColor="@color/colorAccent">
+    <RelativeLayout
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/ivFavorite"
+            android:src="@drawable/favorite_ico"
+            android:padding="8dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"/>
+        <LinearLayout
+            android:id="@+id/llBookInfo"
+            android:layout_toRightOf="@id/ivFavorite"
+            android:layout_toLeftOf="@id/ivInfo"
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvBookName"
+                android:text="Book Name"
+                android:textAppearance="?android:attr/textAppearanceSearchResultSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            <TextView
+                android:id="@+id/tvPageCount"
+                android:text="0 Sayfa"
+                android:textAppearance="?android:attr/textAppearanceSearchResultSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/ivInfo"
+            android:src="@android:drawable/ic_dialog_info"
+            android:padding="8dp"
+            android:layout_toLeftOf="@id/ivRequest"
+            android:layout_width="48dp"
+            android:layout_height="64dp"/>
+        <ImageView
+            android:id="@+id/ivRequest"
+            android:src="@drawable/outline_arrow_back_ios_24"
+            android:rotation="180"
+            android:padding="8dp"
+            android:layout_alignParentEnd="true"
+            android:tint="@android:color/white"
+            android:layout_width="56dp"
+            android:layout_height="64dp"/>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

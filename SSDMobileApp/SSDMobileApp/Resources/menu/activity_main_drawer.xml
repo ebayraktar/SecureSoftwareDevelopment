@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+  <group android:checkableBehavior="single">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/home_ico"
+        android:title="Ana Sayfa" />
+    <item
+        android:id="@+id/nav_books"
+        android:icon="@drawable/books_ico"
+        android:title="Kitaplar" />
+    <item
+        android:id="@+id/nav_favorite"
+        android:icon="@drawable/favorite_ico"
+        android:title="Favorilerim" />
+    <item android:title=""/>
+    <item
+        android:id="@+id/nav_librarian"
+        android:icon="@drawable/librarian_ico"
+        android:title="Kütüphaneci Paneli" />
+    <item
+        android:id="@+id/nav_admin"
+        android:icon="@drawable/admin_ico"
+        android:title="Yönetici Paneli" />
+    <item
+        android:id="@+id/nav_exit"
+        android:icon="@drawable/exit_ico"
+        android:title="Çıkış" />
+  </group>
+
+</menu>

@@ -8,25 +8,65 @@ namespace SSDWebService.REST.Services
 {
     public class BaseService : IBase
     {
-        public virtual bool Delete(out object resultData)
+        public virtual bool Delete<T>(out object resultData)
         {
-            throw new NotImplementedException();
+            try
+            {
+                resultData = Constants.Connection.DeleteAll<T>();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                resultData = ex.Message;
+                return false;
+            }
         }
 
-        public virtual bool Delete(string id, out object resultData)
+        public virtual bool Delete<T>(string id, out object resultData)
         {
-            throw new NotImplementedException();
+            try
+            {
+                resultData = Constants.Connection.Delete<T>(id);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                resultData = ex.Message;
+                return false;
+            }
         }
 
-        public virtual bool Get(out object resultData)
+        public virtual bool Get<T>(out object resultData) where T : new()
         {
-            throw new NotImplementedException();
+            try
+            {
+                resultData = Constants.Connection.Table<T>();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                resultData = ex.Message;
+                return false;
+            }
         }
 
-        public virtual bool Get(string id, out object resultData)
+
+        public virtual bool Get<T>(string id, out object resultData) where T : new()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var ty = typeof(T);
+                string query = $"SELECT * FROM {ty.Name} WHERE {ty.Name.Remove(ty.Name.Length - 1, 1)}Id='" + id + "'";
+                resultData = Constants.Connection.Query<T>(query);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                resultData = ex.Message;
+                return false;
+            }
         }
+
 
         public virtual bool Post(object data, out object resultData)
         {

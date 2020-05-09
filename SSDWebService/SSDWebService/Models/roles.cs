@@ -2,10 +2,10 @@
 
 namespace SSDWebService.Models
 {
-    public class roles
+    public class Roles
     {
         [PrimaryKey]
-        public string roleId { get; set; }
-        public string name { get; set; }
+        public string RoleId { get; set; }
+        public string Name { get; set; }
     }
 }

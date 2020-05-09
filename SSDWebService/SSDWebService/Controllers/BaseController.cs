@@ -1,11 +1,12 @@
 ﻿using SSDWebService.Models;
 using SSDWebService.REST.Managers;
 using SSDWebService.REST.Services;
+using System.Net.Http;
 using System.Web.Http;
 
 namespace SSDWebService.Controllers
 {
-    public class BaseController : ApiController
+    public class BaseController<T> : ApiController where T : new()
     {
         private readonly BaseManager manager;
         private readonly ResponseModel responseModel;
@@ -29,7 +30,7 @@ namespace SSDWebService.Controllers
         // GET api/books
         public ResponseModel Get()
         {
-            if (manager.Get(out object resultData))
+            if (manager.Get<T>(out object resultData))
             {
                 responseModel.OpCode = 0;
                 responseModel.Message = "Başarılı";
@@ -40,9 +41,10 @@ namespace SSDWebService.Controllers
         }
 
         // GET api/books/5
+        [AllowAnonymous]
         public ResponseModel Get(string id)
         {
-            if (manager.Get(id, out object resultData))
+            if (manager.Get<T>(id, out object resultData))
             {
                 responseModel.OpCode = 0;
                 responseModel.Message = "Başarılı";
@@ -86,7 +88,7 @@ namespace SSDWebService.Controllers
         // DELETE api/books
         public ResponseModel Delete()
         {
-            if (manager.Delete(out object resultData))
+            if (manager.Delete<T>(out object resultData))
             {
                 responseModel.OpCode = 0;
                 responseModel.Message = "Başarılı";
@@ -99,7 +101,7 @@ namespace SSDWebService.Controllers
         // DELETE api/books/5
         public ResponseModel Delete(string id)
         {
-            if (manager.Delete(id, out object resultData))
+            if (manager.Delete<T>(id, out object resultData))
             {
                 responseModel.OpCode = 0;
                 responseModel.Message = "Başarılı";

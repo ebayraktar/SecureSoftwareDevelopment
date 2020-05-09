@@ -2,11 +2,11 @@
 
 namespace SSDWebService.Models
 {
-    public class authors
+    public class Authors
     {
         [PrimaryKey]
-        public string authorId { get; set; }
-        public string name { get; set; }
-        public string surname { get; set; }
+        public string AuthorId { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
     }
 }

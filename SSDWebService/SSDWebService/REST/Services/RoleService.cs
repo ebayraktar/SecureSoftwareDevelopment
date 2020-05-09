@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SSDWebService.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,34 +8,56 @@ namespace SSDWebService.REST.Services
 {
     public class RoleService : BaseService
     {
-        public override bool Delete(out object resultData)
-        {
-            return base.Delete(out resultData);
-        }
-
-        public override bool Delete(string id, out object resultData)
-        {
-            return base.Delete(id, out resultData);
-        }
-
-        public override bool Get(out object resultData)
-        {
-            return base.Get(out resultData);
-        }
-
-        public override bool Get(string id, out object resultData)
-        {
-            return base.Get(id, out resultData);
-        }
-
         public override bool Post(object data, out object resultData)
         {
-            return base.Post(data, out resultData);
+            try
+            {
+                var role = Newtonsoft.Json.JsonConvert.DeserializeObject<Roles>(data.ToString());
+                if (role != null)
+                {
+                    string lastID = Constants.Connection.Table<Roles>().OrderByDescending(x => x.RoleId).Select(y => y.RoleId).FirstOrDefault();
+                    if (int.TryParse(lastID, out int idCount))
+                    {
+                        lastID = (++idCount).ToString();
+                    }
+                    else
+                    {
+                        lastID = "0";
+                    }
+                    resultData = role.RoleId = lastID;
+                    return Constants.Connection.Insert(role) > 0 ? true : false;
+                }
+                resultData = "invalid argument: " + data;
+                return false;
+            }
+            catch (Exception ex)
+            {
+                resultData = ex.Message;
+                return false;
+            }
         }
 
         public override bool Put(string id, object data, out object resultData)
         {
-            return base.Put(id, data, out resultData);
+            try
+            {
+                var tempRole = Constants.Connection.Find<Roles>(id);
+                var role = Newtonsoft.Json.JsonConvert.DeserializeObject<Roles>(data.ToString());
+                if (role != null && tempRole != null)
+                {
+                    resultData = role;
+                    tempRole = role;
+                    return Constants.Connection.Update(role) > 0 ? true : false;
+                }
+
+                resultData = "invalid argument: " + data;
+                return false;
+            }
+            catch (Exception ex)
+            {
+                resultData = ex.Message;
+                return false;
+            }
         }
     }
 }

@@ -91,3 +91,4 @@ Z:\VS2019\Web\SecureSoftwareDevelopment\SSDWebService\SSDWebService\obj\Debug\SS
 Z:\VS2019\Web\SecureSoftwareDevelopment\SSDWebService\SSDWebService\obj\Debug\SSDWebService.csproj.CopyComplete
 Z:\VS2019\Web\SecureSoftwareDevelopment\SSDWebService\SSDWebService\obj\Debug\SSDWebService.dll
 Z:\VS2019\Web\SecureSoftwareDevelopment\SSDWebService\SSDWebService\obj\Debug\SSDWebService.pdb
+Z:\VS2019\Web\SecureSoftwareDevelopment\SSDWebService\SSDWebService\bin\FTH.Extension.dll

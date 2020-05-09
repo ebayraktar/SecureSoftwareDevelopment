@@ -10,14 +10,14 @@ namespace SSDWebService.REST.Managers
             this.service = service;
         }
 
-        public virtual bool Get(out object resultData)
+        public virtual bool Get<T>(out object resultData) where T : new()
         {
-            return service.Get(out resultData);
+            return service.Get<T>(out resultData);
         }
-        public virtual bool Get(string id, out object resultData)
+        public virtual bool Get<T>(string id, out object resultData) where T : new()
         {
             {
-                return service.Get(id, out resultData);
+                return service.Get<T>(id, out resultData);
             }
         }
         public virtual bool Post(object data, out object resultData)
@@ -28,13 +28,13 @@ namespace SSDWebService.REST.Managers
         {
             return service.Put(id, data, out resultData);
         }
-        public virtual bool Delete(out object resultData)
+        public virtual bool Delete<T>(out object resultData)
         {
-            return service.Delete(out resultData);
+            return service.Delete<T>(out resultData);
         }
-        public virtual bool Delete(string id, out object resultData)
+        public virtual bool Delete<T>(string id, out object resultData)
         {
-            return service.Delete(id, out resultData);
+            return service.Delete<T>(id, out resultData);
         }
     }
 }

@@ -2,13 +2,13 @@
 
 namespace SSDWebService.Models
 {
-    public class borrows
+    public class Borrows
     {
         [PrimaryKey]
-        public string borrowId { get; set; }
-        public string studentId { get; set; }
-        public string bookId { get; set; }
-        public string takenDate { get; set; }
-        public string broughtDate { get; set; }
+        public string BorrowId { get; set; }
+        public string StudentId { get; set; }
+        public string BookId { get; set; }
+        public string TakenDate { get; set; }
+        public string BroughtDate { get; set; }
     }
 }

@@ -1,96 +1,32 @@
 ﻿using SSDWebService.Models;
-using SSDWebService.REST.Interfaces;
 using System;
+using System.Linq;
 
 namespace SSDWebService.REST.Services
 {
     public class BookService : BaseService
     {
-        public override bool Delete(out object resultData)
-        {
-            try
-            {
-                resultData = Constants.Connection.DeleteAll<books>();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                resultData = ex.Message;
-                return false;
-            }
-        }
-
-        public override bool Delete(string id, out object resultData)
-        {
-            try
-            {
-                resultData = Constants.Connection.Delete<books>(id);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                resultData = ex.Message;
-                return false;
-            }
-        }
-
-        public override bool Get(out object resultData)
-        {
-            try
-            {
-                resultData = Constants.Connection.Table<books>();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                resultData = ex.Message;
-                return false;
-            }
-        }
-
-        public override bool Get(string id, out object resultData)
-        {
-            try
-            {
-
-                //resultData = Constants.Connection.Table<Book>().Where(x => x.ID.Equals(id)).FirstOrDefault();
-                //SQL INJECTION
-                /*
-                 http://localhost:64215/apiv1/Books/a' OR 1=1--
-                 */
-                string query = $"SELECT * FROM BOOK WHERE ID='" + id + "'";
-                resultData = Constants.Connection.Query<books>(query);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                resultData = ex.Message;
-                return false;
-            }
-        }
-
         public override bool Post(object data, out object resultData)
         {
             try
             {
-                //if (data is Book book)
-                //{
-                //    resultData = book.ID = Guid.NewGuid().ToString();
-                //    return Constants.Connection.Insert(book) > 0 ? true : false;
-                //}
-                //resultData = "invalid argument: " + data;
-                //return false;
-                if (data is books book)
+                var book = Newtonsoft.Json.JsonConvert.DeserializeObject<Books>(data.ToString());
+                if (book != null)
                 {
                     //INSERT INTO BOOK VALUES ('a', 'A','A','A')
-                    resultData = book.bookId = Guid.NewGuid().ToString();
-                    string query = $"INSERT INTO BOOK VALUES('{book.bookId}','{book.name}','{book.pagecount}','{book.point}')";
-                    //var result = Constants.Connection.Query<Book>(query);
-                    //return result.Count > 0 ? true : false;
+                    string lastID = Constants.Connection.Table<Books>().OrderByDescending(x => x.BookId).Select(y => y.BookId).FirstOrDefault();
+                    if (int.TryParse(lastID, out int idCount))
+                    {
+                        lastID = (++idCount).ToString();
+                    }
+                    else
+                    {
+                        lastID = "0";
+                    }
+                    resultData = book.BookId = lastID;
+                    string query = $"INSERT INTO books VALUES('{book.BookId}','{book.Name}','{book.Pagecount}','{book.Point}','{book.AuthorId}','{book.TypeId}')";
                     var cmd = Constants.Connection.CreateCommand(query);
-                    var dat = cmd.ExecuteQuery<books>();//.ExecuteNonQuery();
-                    return dat.Count > 0 ? true : false;
-                    //return Constants.Connection.Execute(query) > 0 ? true : false;
+                    return Constants.Connection.Execute(query) > 0 ? true : false;
                 }
                 resultData = "invalid argument: " + data;
                 return false;
@@ -106,8 +42,9 @@ namespace SSDWebService.REST.Services
         {
             try
             {
-                var tempBook = Constants.Connection.Find<books>(id);
-                if (data is books book && tempBook != null)
+                var tempBook = Constants.Connection.Find<Books>(id);
+                var book = Newtonsoft.Json.JsonConvert.DeserializeObject<Books>(data.ToString());
+                if (book != null && tempBook != null)
                 {
                     resultData = book;
                     tempBook = book;

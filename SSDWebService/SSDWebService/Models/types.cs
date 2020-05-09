@@ -2,10 +2,10 @@
 
 namespace SSDWebService.Models
 {
-    public class types
+    public class Types
     {
         [PrimaryKey]
-        public string typeId { get; set; }
-        public string name { get; set; }
+        public string TypeId { get; set; }
+        public string Name { get; set; }
     }
 }
