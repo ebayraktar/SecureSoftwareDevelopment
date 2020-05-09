@@ -6,7 +6,7 @@ namespace SSDWebService.Controllers
 {
     public class BorrowsController : BaseController<Borrows>
     {
-        public BorrowsController() : this(new BaseManager(new BaseService()))
+        public BorrowsController() : this(new BorrowManager(new BorrowService()))
         {
 
         }

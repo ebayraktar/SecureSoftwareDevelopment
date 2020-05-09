@@ -18,7 +18,8 @@ namespace SSDWebService.Filters
         {
             if (actionContext.Request.RequestUri.AbsolutePath.EndsWith("/login") ||
                 actionContext.Request.RequestUri.AbsolutePath.EndsWith("/register") ||
-                (actionContext.Request.RequestUri.AbsolutePath.EndsWith("/roles") && actionContext.Request.Method == HttpMethod.Get)
+                actionContext.Request.RequestUri.AbsolutePath.EndsWith("login/student") ||
+                (actionContext.Request.RequestUri.AbsolutePath.EndsWith("/roles/") && actionContext.Request.Method == HttpMethod.Get)
                 )
             {
                 Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("anonymous"), null);
@@ -35,9 +36,21 @@ namespace SSDWebService.Filters
             //    Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("admin"), null);
             //}
 
-            if (GetUserNameAndPassword(actionContext, out string username, out string password))
+            if (GetUserNameAndPassword(actionContext, out string username, out string password, out string roleId))
             {
-                if (Membership.ValidateUser(username, password))
+                if (roleId == "4")
+                {
+                    if (actionContext.Request.RequestUri.AbsolutePath.Contains("books") ||
+                        actionContext.Request.RequestUri.AbsolutePath.Contains("requests") ||
+                        (actionContext.Request.RequestUri.AbsolutePath.Contains("authors") && actionContext.Request.Method == HttpMethod.Get) ||
+                        (actionContext.Request.RequestUri.AbsolutePath.Contains("borrows") && actionContext.Request.Method == HttpMethod.Get) ||
+                        (actionContext.Request.RequestUri.AbsolutePath.Contains("types") && actionContext.Request.Method == HttpMethod.Get))
+                    {
+                        Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("student"), null);
+                        return;
+                    }
+                }
+                else if (Membership.ValidateUser(username, password))
                 {
                     if (!isUserAuthorized(username))
                         actionContext.Response =
@@ -73,11 +86,12 @@ namespace SSDWebService.Filters
         {
             return Constants.Connection.Table<Users>().Where(x => x.UserName.Equals(username)).FirstOrDefault().RoleId == 4 ? false : true;
         }
-        bool GetUserNameAndPassword(HttpActionContext actionContext, out string username, out string password)
+        bool GetUserNameAndPassword(HttpActionContext actionContext, out string username, out string password, out string roleId)
         {
             LoginModel lModel;
             username = "";
             password = "";
+            roleId = "";
             try
             {
                 string parameter = $@"{actionContext.Request.Headers.Authorization?.Parameter}";
@@ -94,6 +108,7 @@ namespace SSDWebService.Filters
             }
             username = lModel.Username;
             password = lModel.Password;
+            roleId = lModel.RoleId;
             return true;
         }
 

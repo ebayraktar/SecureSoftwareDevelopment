@@ -72,10 +72,12 @@
     <Compile Include="Adapters\BookBorrowsAdapter.cs" />
     <Compile Include="Adapters\BookRequestsAdapter.cs" />
     <Compile Include="Adapters\BooksAdapter.cs" />
+    <Compile Include="Adapters\RequestsAdapter.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Fragments\BooksFragment.cs" />
     <Compile Include="Fragments\LibrarianFragment.cs" />
     <Compile Include="Fragments\MainFragment.cs" />
+    <Compile Include="Fragments\RequestsFragment.cs" />
     <Compile Include="JavaHolder.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Models\Authors.cs" />
@@ -478,6 +480,16 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\book_request_listitem.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\fragment_requests.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\requests_listitem.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

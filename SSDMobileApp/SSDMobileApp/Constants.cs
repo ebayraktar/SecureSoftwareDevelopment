@@ -16,6 +16,7 @@ namespace SSDMobileApp
         private static string BASEADDRESS = HOST + APIADDRESS;
 
         public static readonly string LOGIN_URL = BASEADDRESS + "login";
+        public static readonly string LOGINSTUDENT_URL = BASEADDRESS + "login/student";
         public static readonly string REGISTER_URL = BASEADDRESS + "register";
         public static readonly string REQUESTS_URL = BASEADDRESS + "requests/";
         public static readonly string ROLES_URL = BASEADDRESS + "roles/";
@@ -28,6 +29,7 @@ namespace SSDMobileApp
 
         public static RestManager ServiceManager { get; private set; }
         public static int UserId { get; set; }
+        public static int StudentId { get; set; }
         public static int RoleId { get; set; }
         public static string Token { get; set; }
     }

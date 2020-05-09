@@ -1,6 +1,7 @@
 ﻿
 using Android.App;
 using Android.OS;
+using Android.Service.Carrier;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
@@ -99,7 +100,7 @@ namespace SSDMobileApp.Views
             authors = await GetAuthors();
             if (authors != null)
             {
-                List<string> names = authors.Select(x => x.Name).ToList();
+                List<string> names = authors.Select(x => x.Name + " " + x.Surname).ToList();
                 spnAuthor.Adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, names);
             }
 
@@ -113,7 +114,41 @@ namespace SSDMobileApp.Views
 
         private async void AddBookAsync()
         {
+            Books tempBook = new Books
+            {
+                Name = etBookName.Text,
+                Pagecount = int.Parse(etPageCount.Text),
+                Point = int.Parse(etPoint.Text),
+                AuthorId = authors[spnAuthor.SelectedItemPosition].AuthorId,
+                TypeId = types[spnType.SelectedItemPosition].TypeId
 
+            };
+            string message = "Hata oluştu";
+            var result = await Constants.ServiceManager.Books(tempBook);
+            if (result != null && result.OpCode == 0)
+            {
+                message = "Kitap başarıyla oluşturuldu";
+                Clear();
+            }
+
+            Android.App.AlertDialog dialog = new Android.App.AlertDialog.Builder(this)
+                .SetTitle(result.Message)
+                .SetMessage(message)
+                .SetIcon(Android.Resource.Drawable.IcDialogAlert)
+                .SetNegativeButton("TAMAM", (Android.Content.IDialogInterfaceOnClickListener)null)
+                .Create();
+
+            dialog.Show();
+        }
+
+        private void Clear()
+        {
+            etBookName.Text = string.Empty;
+            etPageCount.Text = string.Empty;
+            etPoint.Text = string.Empty;
+            spnAuthor.SetSelection(0);
+            spnType.SetSelection(0);
+            etBookName.RequestFocus();
         }
 
         async Task<List<Authors>> GetAuthors()

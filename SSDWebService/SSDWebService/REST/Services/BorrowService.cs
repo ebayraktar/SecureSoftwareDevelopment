@@ -8,6 +8,30 @@ namespace SSDWebService.REST.Services
 {
     public class BorrowService : BaseService
     {
+        public override bool Get<T>(string id, out object resultData)
+        {
+            try
+            {
+                var borrows = Constants.Connection.Table<Borrows>().Where(x => x.BookId.Equals(id)).ToList();
+                List<BookBorrows> tempList = new List<BookBorrows>();
+                if (borrows != null && borrows.Count > 0)
+                {
+                    foreach (var borrow in borrows)
+                    {
+                        string tempStudent = Constants.Connection.Table<Students>().Where(x => x.StudentId.Equals(borrow.StudentId)).Select(x => x.Name + " " + x.Surname).FirstOrDefault();
+                        tempList.Add(new BookBorrows { StudentName = tempStudent, BroughtDate = borrow.BroughtDate, TakenDate = borrow.TakenDate });
+                    }
+                }
+                resultData = tempList;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                resultData = ex.Message;
+                return false;
+            }
+        }
+
         public override bool Post(object data, out object resultData)
         {
             try

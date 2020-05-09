@@ -517,3 +517,11 @@ Z:\VS2019\Web\SecureSoftwareDevelopment\SSDMobileApp\SSDMobileApp\obj\Debug\90\s
 Z:\VS2019\Web\SecureSoftwareDevelopment\SSDMobileApp\SSDMobileApp\obj\Debug\90\stamp\_GeneratePackageManagerJava.stamp
 Z:\VS2019\Web\SecureSoftwareDevelopment\SSDMobileApp\SSDMobileApp\obj\Debug\90\stamp\_ResolveLibraryProjectImports.stamp
 Z:\VS2019\Web\SecureSoftwareDevelopment\SSDMobileApp\SSDMobileApp\obj\Debug\90\SSDMobileApp.csprojAssemblyReference.cache
+Z:\VS2019\Web\SecureSoftwareDevelopment\SSDMobileApp\SSDMobileApp\obj\Debug\90\res\layout\book_request_listitem.xml
+Z:\VS2019\Web\SecureSoftwareDevelopment\SSDMobileApp\SSDMobileApp\obj\Debug\90\android\src\crc641fb699166f029851\BookRequestsAdapter.java
+Z:\VS2019\Web\SecureSoftwareDevelopment\SSDMobileApp\SSDMobileApp\obj\Debug\90\android\src\crc641fb699166f029851\BookRequestsAdapterViewHolder.java
+Z:\VS2019\Web\SecureSoftwareDevelopment\SSDMobileApp\SSDMobileApp\obj\Debug\90\res\layout\fragment_requests.xml
+Z:\VS2019\Web\SecureSoftwareDevelopment\SSDMobileApp\SSDMobileApp\obj\Debug\90\android\src\crc64447ba066176875da\RequestsFragment.java
+Z:\VS2019\Web\SecureSoftwareDevelopment\SSDMobileApp\SSDMobileApp\obj\Debug\90\res\layout\requests_listitem.xml
+Z:\VS2019\Web\SecureSoftwareDevelopment\SSDMobileApp\SSDMobileApp\obj\Debug\90\android\src\crc641fb699166f029851\RequestsAdapter.java
+Z:\VS2019\Web\SecureSoftwareDevelopment\SSDMobileApp\SSDMobileApp\obj\Debug\90\android\src\crc641fb699166f029851\RequestsAdapterViewHolder.java

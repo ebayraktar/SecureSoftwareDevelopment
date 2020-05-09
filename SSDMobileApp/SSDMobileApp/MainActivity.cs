@@ -1,5 +1,4 @@
 ﻿using System;
-using Android;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -22,6 +21,7 @@ namespace SSDMobileApp
     {
         internal MainFragment mainFragment;
         internal BooksFragment booksFragment;
+        internal RequestsFragment requestsFragment;
         internal LibrarianFragment librarianFragment;
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -32,7 +32,7 @@ namespace SSDMobileApp
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
 
-            Title = "Secure Software Library";
+            Title = "Secure Software Kütüphanesi";
             fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
             fab.Click += FabOnClick;
 
@@ -125,6 +125,7 @@ namespace SSDMobileApp
         private void Exit()
         {
             Constants.UserId = -1;
+            Constants.StudentId = -1;
             Constants.RoleId = -1;
             Constants.Token = string.Empty;
             StartActivity(new Intent(this, typeof(LoginActivity)));
@@ -134,6 +135,8 @@ namespace SSDMobileApp
 
         public bool OnNavigationItemSelected(IMenuItem item)
         {
+            string title = "";
+            bool valid = true;
             int id = item.ItemId;
             Fragment frm = null;
             fab.Visibility = ViewStates.Gone;
@@ -145,31 +148,58 @@ namespace SSDMobileApp
                 }
                 fab.Visibility = ViewStates.Visible;
                 frm = mainFragment;
+                title = "Secure Software Kütüphanesi";
             }
             else if (id == Resource.Id.nav_books)
             {
+                if (Constants.RoleId != 4)
+                {
+                    ShowMessage(this, "Yetkilendirme hatası", "Yönetici hesabıyla istekte bulunamazsınız");
+                    return false;
+                }
                 if (booksFragment == null)
                 {
                     booksFragment = new BooksFragment();
                 }
                 frm = booksFragment;
+                title = "Kitaplar";
             }
-            else if (id == Resource.Id.nav_favorite)
+            else if (id == Resource.Id.nav_requests)
             {
-
+                if (Constants.RoleId != 4)
+                {
+                    ShowMessage(this, "Yetkilendirme hatası", "Yönetici hesabıyla istekte bulunamazsınız");
+                    return false;
+                }
+                if (requestsFragment == null)
+                {
+                    requestsFragment = new RequestsFragment();
+                }
+                frm = requestsFragment;
+                title = "Taleplerim";
             }
             else if (id == Resource.Id.nav_librarian)
             {
+                if (Constants.RoleId == 4 || Constants.RoleId == 3)
+                {
+                    ShowMessage(this, "Yetkilendirme hatası", "Bu sayfaya erişebilmek için yetkiniz yok");
+                    return false;
+                }
                 if (librarianFragment == null)
                 {
                     librarianFragment = new LibrarianFragment();
                 }
                 frm = librarianFragment;
-
+                title = "Kütüphaneci Paneli";
             }
             else if (id == Resource.Id.nav_admin)
             {
-
+                if (Constants.RoleId == 4 || Constants.RoleId == 3 || Constants.RoleId == 2)
+                {
+                    ShowMessage(this, "Yetkilendirme hatası", "Bu sayfaya erişebilmek için yetkiniz yok");
+                    return false;
+                }
+                title = "Admin Paneli";
             }
             else if (id == Resource.Id.nav_exit)
             {
@@ -179,7 +209,20 @@ namespace SSDMobileApp
             DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             drawer.CloseDrawer(GravityCompat.Start);
             LoadFragment(frm);
-            return true;
+            Title = title;
+            return valid;
+        }
+
+        public void ShowMessage(Context context, string title, string message)
+        {
+            Android.App.AlertDialog dialog = new Android.App.AlertDialog.Builder(context)
+                .SetTitle(title)
+                .SetMessage(message)
+                .SetNegativeButton("TAMAM", (IDialogInterfaceOnClickListener)null)
+                .Create();
+
+            dialog.Show();
+
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

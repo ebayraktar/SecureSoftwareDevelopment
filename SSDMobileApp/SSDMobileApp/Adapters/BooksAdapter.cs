@@ -27,6 +27,9 @@ namespace SSDMobileApp.Adapters
 
         public BooksAdapter(Context context, List<Books> data)
         {
+            if (data == null)
+                return;
+
             items = data;
             this.context = context;
             Filter = new BooksFilter(this);

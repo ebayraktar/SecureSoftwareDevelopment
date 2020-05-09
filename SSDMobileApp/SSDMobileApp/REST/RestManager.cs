@@ -18,6 +18,14 @@ namespace SSDMobileApp.REST
         {
             return await service.LoginAsync(data);
         }
+        public async Task<MobileResult> LoginAsStudentAsync(LoginModel data)
+        {
+            return await service.LoginAsStudentAsync(data);
+        }
+        public async Task<MobileResult> Requests(Requests data, string id = "")
+        {
+            return await service.Requests(data, id);
+        }
         public async Task<MobileResult> Requests(string id = "")
         {
             return await service.Requests(id);
@@ -29,6 +37,11 @@ namespace SSDMobileApp.REST
         public async Task<MobileResult> Authors(string id = "")
         {
             return await service.Authors(id);
+        }
+
+        public async Task<MobileResult> Books(Books data, string id = "")
+        {
+            return await service.Books(data, id);
         }
         public async Task<MobileResult> Books(string id = "")
         {

@@ -13,9 +13,9 @@
         android:icon="@drawable/books_ico"
         android:title="Kitaplar" />
     <item
-        android:id="@+id/nav_favorite"
+        android:id="@+id/nav_requests"
         android:icon="@drawable/favorite_ico"
-        android:title="Favorilerim" />
+        android:title="Taleplerim" />
     <item android:title=""/>
     <item
         android:id="@+id/nav_librarian"
