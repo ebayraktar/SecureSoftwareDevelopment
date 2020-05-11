@@ -181,6 +181,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Controllers\RequestsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Controllers\TypesController.cs" />
@@ -193,11 +194,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Authors.cs" />
+    <Compile Include="Models\BookBorrows.cs" />
+    <Compile Include="Models\BookRequests.cs" />
     <Compile Include="Models\Books.cs" />
     <Compile Include="Models\Borrows.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\LoginResponseModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
+    <Compile Include="Models\Requests.cs" />
     <Compile Include="Models\ResponseModel.cs" />
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\Students.cs" />
@@ -209,6 +213,7 @@
     <Compile Include="REST\Managers\BaseManager.cs" />
     <Compile Include="REST\Managers\BookManager.cs" />
     <Compile Include="REST\Managers\BorrowManager.cs" />
+    <Compile Include="REST\Managers\RequestManager.cs" />
     <Compile Include="REST\Managers\RoleManager.cs" />
     <Compile Include="REST\Managers\StudentManager.cs" />
     <Compile Include="REST\Managers\TypeManager.cs" />
@@ -217,6 +222,7 @@
     <Compile Include="REST\Services\BaseService.cs" />
     <Compile Include="REST\Services\BookService.cs" />
     <Compile Include="REST\Services\BorrowService.cs" />
+    <Compile Include="REST\Services\RequestService.cs" />
     <Compile Include="REST\Services\RoleService.cs" />
     <Compile Include="REST\Services\StudentService.cs" />
     <Compile Include="REST\Services\TypeService.cs" />

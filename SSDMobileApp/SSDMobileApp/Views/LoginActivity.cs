@@ -23,6 +23,7 @@ namespace SSDMobileApp.Views
 
         TextInputEditText etUsername, etPassword;
         TextInputLayout tilUsername, tilPassword;
+        CheckBox cbRememberMe;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -31,6 +32,34 @@ namespace SSDMobileApp.Views
 
             Initialize();
 
+            etUsername.FocusChange += (s, e) =>
+                        {
+                            if (!e.HasFocus)
+                            {
+                                if (string.IsNullOrEmpty(etUsername.Text))
+                                {
+                                    tilUsername.Error = "Boş olamaz";
+                                }
+                                else
+                                {
+                                    tilUsername.Error = string.Empty;
+                                }
+                            }
+                        };
+            etPassword.FocusChange += (s, e) =>
+            {
+                if (!e.HasFocus)
+                {
+                    if (string.IsNullOrEmpty(etUsername.Text))
+                    {
+                        tilPassword.Error = "Boş olamaz";
+                    }
+                    else
+                    {
+                        tilPassword.Error = string.Empty;
+                    }
+                }
+            };
             FindViewById(Resource.Id.cvLogin).Click += (s, e) =>
             {
                 if (ValidateForm())
@@ -49,41 +78,13 @@ namespace SSDMobileApp.Views
         {
             //App INIT
             new Constants();
-            //
 
             etUsername = FindViewById<TextInputEditText>(Resource.Id.etUsername);
             etPassword = FindViewById<TextInputEditText>(Resource.Id.etPassword);
             tilUsername = FindViewById<TextInputLayout>(Resource.Id.tilUsername);
             tilPassword = FindViewById<TextInputLayout>(Resource.Id.tilPassword);
 
-            etUsername.FocusChange += (s, e) =>
-            {
-                if (!e.HasFocus)
-                {
-                    if (string.IsNullOrEmpty(etUsername.Text))
-                    {
-                        tilUsername.Error = "Boş olamaz";
-                    }
-                    else
-                    {
-                        tilUsername.Error = string.Empty;
-                    }
-                }
-            };
-            etPassword.FocusChange += (s, e) =>
-            {
-                if (!e.HasFocus)
-                {
-                    if (string.IsNullOrEmpty(etUsername.Text))
-                    {
-                        tilPassword.Error = "Boş olamaz";
-                    }
-                    else
-                    {
-                        tilPassword.Error = string.Empty;
-                    }
-                }
-            };
+            cbRememberMe = FindViewById<CheckBox>(Resource.Id.cbRememberMe);
         }
         private async void LoginAsync()
         {
@@ -92,10 +93,15 @@ namespace SSDMobileApp.Views
                 Username = etUsername.Text,
                 Password = etPassword.Text
             };
-            var result = await Constants.ServiceManager.LoginAsync(model);
+            MobileResult result;
+            if (cbRememberMe.Checked)
+                result = await Constants.ServiceManager.LoginAsStudentAsync(model);
+            else
+                result = await Constants.ServiceManager.LoginAsync(model);
             if (result != null && result.OpCode == 0)
             {
                 var response = Newtonsoft.Json.JsonConvert.DeserializeObject<LoginResponseModel>(result.Result.ToString());
+                Constants.StudentId = response.UserId;
                 Constants.UserId = response.UserId;
                 Constants.RoleId = response.RoleId;
                 Constants.Token = response.Token;
@@ -110,7 +116,6 @@ namespace SSDMobileApp.Views
                     .SetNegativeButton("TAMAM", (IDialogInterfaceOnClickListener)null)
                     .Create().Show();
             }
-
         }
         private bool ValidateForm()
         {

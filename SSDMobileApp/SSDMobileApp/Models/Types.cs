@@ -15,7 +15,7 @@ namespace SSDMobileApp.Models
     public class Types
     {
 
-        public string TypeId { get; set; }
+        public int TypeId { get; set; }
         public string Name { get; set; }
     }
 }

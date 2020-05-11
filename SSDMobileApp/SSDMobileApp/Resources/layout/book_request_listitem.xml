@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="96dp"
     android:layout_marginTop="2dp"
     android:layout_marginBottom="2dp"
     app:cardCornerRadius="8dp"
@@ -47,11 +47,10 @@
             android:id="@+id/ivReject"
             android:src="@android:drawable/ic_delete"
             android:padding="8dp"
-            android:layout_alignParentEnd="true"
             android:tint="@android:color/white"
             android:layout_toLeftOf="@id/ivAccept"
             android:layout_width="56dp"
-            android:layout_height="64dp"/>
+            android:layout_height="96dp"/>
         <ImageView
             android:id="@+id/ivAccept"
             android:src="@android:drawable/ic_input_add"
@@ -59,6 +58,6 @@
             android:layout_alignParentEnd="true"
             android:tint="@android:color/white"
             android:layout_width="56dp"
-            android:layout_height="64dp"/>
+            android:layout_height="96dp"/>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

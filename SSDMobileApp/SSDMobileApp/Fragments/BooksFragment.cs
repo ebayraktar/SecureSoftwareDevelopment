@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using AndroidX.CardView.Widget;
 using Android.App;
 using System.Linq;
+using System;
+using Android.Telephony;
 
 namespace SSDMobileApp.Fragments
 {
@@ -49,6 +51,9 @@ namespace SSDMobileApp.Fragments
         {
 
             books = await GetBooksAsync();
+            if (books == null)
+                return;
+
             bookAdapter = new BooksAdapter(View.Context, books);
             bookAdapter.ItemFavClick += (s, e) =>
             {
@@ -112,7 +117,8 @@ namespace SSDMobileApp.Fragments
             tvAuthorName.Text = bookDetail?.Author;
             tvTypeName.Text = bookDetail?.Type;
             rcvBorrows.SetLayoutManager(new LinearLayoutManager(View.Context));
-            rcvBorrows.SetAdapter(new BookBorrowsAdapter(bookDetail.borrowHistory));
+            if (bookDetail != null)
+                rcvBorrows.SetAdapter(new BookBorrowsAdapter(bookDetail.borrowHistory));
 
 
             cvCancel.Click += (s, e) =>
@@ -168,23 +174,23 @@ namespace SSDMobileApp.Fragments
             tempDetail.Type = type?.Name;
 
             List<BookBorrows> borrowList = null;
-            //var borrowResult = await Constants.ServiceManager.Borrows();
-            //if (borrowResult != null && borrowResult.OpCode == 0)
-            //{
-            //    borrowList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<BookBorrows>>(borrowResult.Result.ToString());
-            //}
-            if (borrowList == null || borrowList.Count == 0)
+            var borrowResult = await Constants.ServiceManager.Borrows(book.BookId.ToString());
+            if (borrowResult != null && borrowResult.OpCode == 0)
             {
-                borrowList = new List<BookBorrows>()
-                {
-                    new BookBorrows{ StudentName="Student 360", TakenDate="2015-08-09 13:26:00.000", BroughtDate="2015-08-20 06:59:00.000"},
-                    new BookBorrows{ StudentName="Student 308", TakenDate="2015-08-10 19:44:00.000", BroughtDate="2015-08-15 10:46:00.000"},
-                    new BookBorrows{ StudentName="Student 288", TakenDate="2015-08-10 22:05:00.000", BroughtDate="2015-08-19 17:28:00.000"},
-                    new BookBorrows{ StudentName="Student 157", TakenDate="2015-08-24 20:06:00.000", BroughtDate="2015-08-20 06:59:00.000"},
-                    new BookBorrows{ StudentName="Student 451", TakenDate="2015-08-11 02:32:00.000", BroughtDate="2015-08-17 15:12:00.000"},
-                    new BookBorrows{ StudentName="Student 214", TakenDate="2015-08-12 12:05:00.000", BroughtDate="2015-08-21 07:16:00.000"},
-                };
+                borrowList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<BookBorrows>>(borrowResult.Result.ToString());
             }
+            //if (borrowList == null || borrowList.Count == 0)
+            //{
+            //    borrowList = new List<BookBorrows>()
+            //    {
+            //        new BookBorrows{ StudentName="Student 360", TakenDate="2015-08-09 13:26:00.000", BroughtDate="2015-08-20 06:59:00.000"},
+            //        new BookBorrows{ StudentName="Student 308", TakenDate="2015-08-10 19:44:00.000", BroughtDate="2015-08-15 10:46:00.000"},
+            //        new BookBorrows{ StudentName="Student 288", TakenDate="2015-08-10 22:05:00.000", BroughtDate="2015-08-19 17:28:00.000"},
+            //        new BookBorrows{ StudentName="Student 157", TakenDate="2015-08-24 20:06:00.000", BroughtDate="2015-08-20 06:59:00.000"},
+            //        new BookBorrows{ StudentName="Student 451", TakenDate="2015-08-11 02:32:00.000", BroughtDate="2015-08-17 15:12:00.000"},
+            //        new BookBorrows{ StudentName="Student 214", TakenDate="2015-08-12 12:05:00.000", BroughtDate="2015-08-21 07:16:00.000"},
+            //    };
+            //}
             tempDetail.borrowHistory = borrowList;
 
             return tempDetail;
@@ -192,8 +198,28 @@ namespace SSDMobileApp.Fragments
 
         async void BookRequest(int bookId)
         {
-            await Task.Delay(5);
-            //return null;
+            Requests tempRequest = new Requests
+            {
+                BookId = bookId,
+                RequestDate = DateTime.Now.ToShortDateString(),
+                Statu = 0,
+                StudentId = Constants.StudentId
+            };
+            string message = "Hata oluştu";
+            var result = await Constants.ServiceManager.Requests(tempRequest);
+            if (result != null && result.OpCode == 0)
+            {
+                message = "İstek talebi gönderildi";
+            }
+
+            Android.App.AlertDialog dialog = new Android.App.AlertDialog.Builder(View.Context)
+                .SetTitle(result.Message)
+                .SetMessage(message)
+                .SetIcon(Android.Resource.Drawable.IcDialogAlert)
+                .SetNegativeButton("TAMAM", (Android.Content.IDialogInterfaceOnClickListener)null)
+                .Create();
+
+            dialog.Show();
         }
 
         public void AfterTextChanged(IEditable s)

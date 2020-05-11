@@ -8,6 +8,7 @@ using AndroidX.RecyclerView.Widget;
 using SSDMobileApp.Adapters;
 using SSDMobileApp.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
@@ -42,38 +43,46 @@ namespace SSDMobileApp.Views
         {
             requests = await GetRequestsAsync();
             rcvBookRequests.SetLayoutManager(new LinearLayoutManager(this));
+            if (requests == null)
+                return;
             adapter = new BookRequestsAdapter(requests);
             adapter.ItemAcceptClick += (s, e) =>
             {
-                Action(e.Position, true, e.Position);
+                Action(e.Position, true);
             };
             adapter.ItemRejectClick += (s, e) =>
             {
-                Action(e.Position, false, e.Position);
+                Action(e.Position, false);
             };
             rcvBookRequests.SetAdapter(adapter);
         }
 
-        private void Action(int requestId, bool isAccept, int position)
+        private async void Action(int position, bool isAccept)
         {
+            int requestId = requests[position].RequestId;
+
+            Requests tempRequest = new Requests
+            {
+                RequestId = requestId,
+                Statu = isAccept ? 1 : 2
+            };
+
+            string message = "Hata oluştu";
+            var result = await Constants.ServiceManager.Requests(tempRequest, requestId.ToString());
+            if (result != null && result.OpCode == 0)
+            {
+                message = "Istek " + (isAccept ? "kabul edildi" : "reddedildi");
+            }
+
+            Android.App.AlertDialog dialog = new Android.App.AlertDialog.Builder(this)
+                .SetTitle(result.Message)
+                .SetMessage(message)
+                .SetNegativeButton("TAMAM", (Android.Content.IDialogInterfaceOnClickListener)null)
+                .Create();
+
+            dialog.Show();
             requests.RemoveAt(position);
             adapter.NotifyItemRemoved(position);
-            if (isAccept)
-            {
-                Accept(requestId);
-            }
-            else
-            {
-                Reject(requestId);
-            }
-        }
-        private async void Accept(int requestId)
-        {
-            await Task.Delay(1000);
-        }
-        private async void Reject(int requestId)
-        {
-            await Task.Delay(1000);
         }
 
         private async Task<List<BookRequests>> GetRequestsAsync()
@@ -82,7 +91,7 @@ namespace SSDMobileApp.Views
             var result = await Constants.ServiceManager.Requests();
             if (result != null && result.OpCode == 0)
             {
-                tempRequests = Newtonsoft.Json.JsonConvert.DeserializeObject<List<BookRequests>>(result.Result.ToString());
+                tempRequests = Newtonsoft.Json.JsonConvert.DeserializeObject<List<BookRequests>>(result.Result.ToString())?.Where(x => x.Statu.Equals("0")).ToList();
             }
             return tempRequests;
         }

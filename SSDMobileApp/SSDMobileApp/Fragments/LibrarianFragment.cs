@@ -18,7 +18,6 @@ namespace SSDMobileApp.Fragments
 {
     public class LibrarianFragment : Android.Support.V4.App.Fragment
     {
-        CardView cvRequests, cvAddBook, cvSettings;
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);

@@ -27,10 +27,31 @@ namespace SSDMobileApp.REST
             return await BaseGetRequest(uri);
         }
 
+        public async Task<MobileResult> Books(Books data, string id = "")
+        {
+            var uri = new Uri(Constants.BOOKS_URL + id);
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(data);
+            if (string.IsNullOrEmpty(id))
+            {
+                return await BasePostRequest(uri, json);
+            }
+            else
+            {
+                return await BasePutRequest(uri, json);
+            }
+        }
+
         public async Task<MobileResult> Borrows(string id = "")
         {
             var uri = new Uri(Constants.BORROWS_URL + id);
             return await BaseGetRequest(uri);
+        }
+
+        public async Task<MobileResult> LoginAsStudentAsync(LoginModel data)
+        {
+            var uri = new Uri(Constants.LOGINSTUDENT_URL);
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(data);
+            return await BasePostRequest(uri, json);
         }
 
         public async Task<MobileResult> LoginAsync(LoginModel data)
@@ -49,8 +70,22 @@ namespace SSDMobileApp.REST
 
         public async Task<MobileResult> Requests(string id = "")
         {
-            var uri = new Uri(Constants.ROLES_URL + id);
+            var uri = new Uri(Constants.REQUESTS_URL + id);
             return await BaseGetRequest(uri);
+        }
+
+        public async Task<MobileResult> Requests(Requests data, string id = "")
+        {
+            var uri = new Uri(Constants.REQUESTS_URL + id);
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(data);
+            if (string.IsNullOrEmpty(id))
+            {
+                return await BasePostRequest(uri, json);
+            }
+            else
+            {
+                return await BasePutRequest(uri, json);
+            }
         }
 
         public async Task<MobileResult> Roles(string id = "")
@@ -79,37 +114,61 @@ namespace SSDMobileApp.REST
 
         private async Task<MobileResult> BaseGetRequest(Uri uri)
         {
-            if (!string.IsNullOrEmpty(Constants.Token))
+            try
             {
-                client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", Constants.Token);
+                if (!string.IsNullOrEmpty(Constants.Token))
+                {
+                    client.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Bearer", Constants.Token);
+                }
+                HttpResponseMessage response = await client.GetAsync(uri);
+                return await BaseResponse(response);
+
             }
-            HttpResponseMessage response = await client.GetAsync(uri);
-            return await BaseResponse(response);
+            catch (Exception ex)
+            {
+                return new MobileResult { Message = "Error", OpCode = -3, Result = ex.Message };
+            }
         }
 
         private async Task<MobileResult> BasePostRequest(Uri uri, string json)
         {
-            if (!string.IsNullOrEmpty(Constants.Token))
+            try
             {
-                client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", Constants.Token);
+                if (!string.IsNullOrEmpty(Constants.Token))
+                {
+                    client.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Bearer", Constants.Token);
+                }
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(uri, content);
+                return await BaseResponse(response);
+
             }
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync(uri, content);
-            return await BaseResponse(response);
+            catch (Exception ex)
+            {
+                return new MobileResult { Message = "Error", OpCode = -3, Result = ex.Message };
+            }
         }
 
         private async Task<MobileResult> BasePutRequest(Uri uri, string json)
         {
-            if (!string.IsNullOrEmpty(Constants.Token))
+            try
             {
-                client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", Constants.Token);
+                if (!string.IsNullOrEmpty(Constants.Token))
+                {
+                    client.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Bearer", Constants.Token);
+                }
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PutAsync(uri, content);
+                return await BaseResponse(response);
+
             }
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PutAsync(uri, content);
-            return await BaseResponse(response);
+            catch (Exception ex)
+            {
+                return new MobileResult { Message = "Error", OpCode = -3, Result = ex.Message };
+            }
         }
 
         private async Task<MobileResult> BaseResponse(HttpResponseMessage response)
@@ -126,6 +185,7 @@ namespace SSDMobileApp.REST
                 {
                     return new MobileResult { Message = "Fail", OpCode = -2, Result = response.StatusCode };
                 }
+
             }
             catch (Exception ex)
             {

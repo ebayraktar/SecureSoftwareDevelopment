@@ -13,7 +13,8 @@ namespace SSDMobileApp.Adapters
     {
         public event EventHandler<BookRequestsAdapterClickEventArgs> ItemAcceptClick;
         public event EventHandler<BookRequestsAdapterClickEventArgs> ItemRejectClick;
-        List<BookRequests> items;
+
+        readonly List<BookRequests> items;
 
         public BookRequestsAdapter(List<BookRequests> data)
         {
@@ -43,7 +44,8 @@ namespace SSDMobileApp.Adapters
             var holder = viewHolder as BookRequestsAdapterViewHolder;
             holder.TvBookName.Text = items[position].BookName;
             holder.TvStudentName.Text = items[position].StudentName;
-            holder.TvRequestDate.Text = items[position].RequestDate;
+            DateTime requestDate = DateTime.Parse(item?.RequestDate);
+            holder.TvRequestDate.Text = requestDate.ToString("yyyy/MM/dd");
         }
 
         public override int ItemCount => items.Count;
