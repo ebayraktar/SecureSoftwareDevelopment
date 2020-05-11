@@ -6,11 +6,15 @@ androidx.appcompat.widget.Toolbar;obj\Debug\90\res\layout\activity_add_book.xml
 androidx.appcompat.widget.Toolbar;obj\Debug\90\res\layout\activity_book_requests.xml
 androidx.appcompat.widget.Toolbar;obj\Debug\90\res\layout\activity_librarian_settings.xml
 androidx.appcompat.widget.Toolbar;obj\Debug\90\res\layout\app_bar_main.xml
+androidx.appcompat.widget.Toolbar;obj\Debug\90\res\layout\authorities_activity.xml
 androidx.cardview.widget.CardView;obj\Debug\90\res\layout\activity_login.xml
 androidx.cardview.widget.CardView;obj\Debug\90\res\layout\activity_signup.xml
+androidx.cardview.widget.CardView;obj\Debug\90\res\layout\authority_listitem.xml
 androidx.cardview.widget.CardView;obj\Debug\90\res\layout\book_request_listitem.xml
 androidx.cardview.widget.CardView;obj\Debug\90\res\layout\books_listitem.xml
 androidx.cardview.widget.CardView;obj\Debug\90\res\layout\borrows_listitem.xml
+androidx.cardview.widget.CardView;obj\Debug\90\res\layout\fragment_admin.xml
+androidx.cardview.widget.CardView;obj\Debug\90\res\layout\fragment_librarian.xml
 androidx.cardview.widget.CardView;obj\Debug\90\res\layout\fragment_main.xml
 androidx.cardview.widget.CardView;obj\Debug\90\res\layout\librarian_fragment.xml
 androidx.cardview.widget.CardView;obj\Debug\90\res\layout\popup_book_detail.xml
@@ -20,6 +24,7 @@ androidx.constraintlayout.widget.ConstraintLayout;obj\Debug\90\res\layout\activi
 androidx.coordinatorlayout.widget.CoordinatorLayout;obj\Debug\90\res\layout\app_bar_main.xml
 androidx.drawerlayout.widget.DrawerLayout;obj\Debug\90\res\layout\activity_main.xml
 androidx.recyclerview.widget.RecyclerView;obj\Debug\90\res\layout\activity_book_requests.xml
+androidx.recyclerview.widget.RecyclerView;obj\Debug\90\res\layout\authorities_activity.xml
 androidx.recyclerview.widget.RecyclerView;obj\Debug\90\res\layout\fragment_books.xml
 androidx.recyclerview.widget.RecyclerView;obj\Debug\90\res\layout\fragment_requests.xml
 androidx.recyclerview.widget.RecyclerView;obj\Debug\90\res\layout\popup_book_detail.xml
@@ -34,6 +39,7 @@ com.google.android.material.appbar.AppBarLayout;obj\Debug\90\res\layout\activity
 com.google.android.material.appbar.AppBarLayout;obj\Debug\90\res\layout\activity_book_requests.xml
 com.google.android.material.appbar.AppBarLayout;obj\Debug\90\res\layout\activity_librarian_settings.xml
 com.google.android.material.appbar.AppBarLayout;obj\Debug\90\res\layout\app_bar_main.xml
+com.google.android.material.appbar.AppBarLayout;obj\Debug\90\res\layout\authorities_activity.xml
 com.google.android.material.card.MaterialCardView;obj\Debug\90\res\layout\activity_add_book.xml
 com.google.android.material.card.MaterialCardView;obj\Debug\90\res\layout\activity_login.xml
 com.google.android.material.floatingactionbutton.FloatingActionButton;obj\Debug\90\res\layout\app_bar_main.xml
@@ -57,8 +63,11 @@ gradient;obj\Debug\90\res\drawable-v24\ic_launcher_foreground.xml
 group;obj\Debug\90\res\menu\activity_main_drawer.xml
 ImageButton;obj\Debug\90\res\layout\activity_signup.xml
 ImageView;obj\Debug\90\res\layout\activity_login.xml
+ImageView;obj\Debug\90\res\layout\authority_listitem.xml
 ImageView;obj\Debug\90\res\layout\book_request_listitem.xml
 ImageView;obj\Debug\90\res\layout\books_listitem.xml
+ImageView;obj\Debug\90\res\layout\fragment_admin.xml
+ImageView;obj\Debug\90\res\layout\fragment_librarian.xml
 ImageView;obj\Debug\90\res\layout\librarian_fragment.xml
 ImageView;obj\Debug\90\res\layout\nav_header_main.xml
 include;obj\Debug\90\res\layout\activity_main.xml
@@ -73,6 +82,8 @@ LinearLayout;obj\Debug\90\res\layout\activity_add_book.xml
 LinearLayout;obj\Debug\90\res\layout\activity_book_requests.xml
 LinearLayout;obj\Debug\90\res\layout\activity_librarian_settings.xml
 LinearLayout;obj\Debug\90\res\layout\activity_login.xml
+LinearLayout;obj\Debug\90\res\layout\authorities_activity.xml
+LinearLayout;obj\Debug\90\res\layout\authority_listitem.xml
 LinearLayout;obj\Debug\90\res\layout\book_request_listitem.xml
 LinearLayout;obj\Debug\90\res\layout\books_listitem.xml
 LinearLayout;obj\Debug\90\res\layout\borrows_listitem.xml
@@ -105,7 +116,9 @@ RelativeLayout;obj\Debug\90\res\layout\activity_add_book.xml
 RelativeLayout;obj\Debug\90\res\layout\book_request_listitem.xml
 RelativeLayout;obj\Debug\90\res\layout\books_listitem.xml
 RelativeLayout;obj\Debug\90\res\layout\content_main.xml
+RelativeLayout;obj\Debug\90\res\layout\fragment_admin.xml
 RelativeLayout;obj\Debug\90\res\layout\fragment_books.xml
+RelativeLayout;obj\Debug\90\res\layout\fragment_librarian.xml
 RelativeLayout;obj\Debug\90\res\layout\fragment_main.xml
 RelativeLayout;obj\Debug\90\res\layout\librarian_fragment.xml
 RelativeLayout;obj\Debug\90\res\layout\popup_book_detail.xml
@@ -129,9 +142,12 @@ TextView;obj\Debug\90\res\layout\activity_book_requests.xml
 TextView;obj\Debug\90\res\layout\activity_librarian_settings.xml
 TextView;obj\Debug\90\res\layout\activity_login.xml
 TextView;obj\Debug\90\res\layout\activity_signup.xml
+TextView;obj\Debug\90\res\layout\authority_listitem.xml
 TextView;obj\Debug\90\res\layout\book_request_listitem.xml
 TextView;obj\Debug\90\res\layout\books_listitem.xml
 TextView;obj\Debug\90\res\layout\borrows_listitem.xml
+TextView;obj\Debug\90\res\layout\fragment_admin.xml
+TextView;obj\Debug\90\res\layout\fragment_librarian.xml
 TextView;obj\Debug\90\res\layout\fragment_main.xml
 TextView;obj\Debug\90\res\layout\librarian_fragment.xml
 TextView;obj\Debug\90\res\layout\nav_header_main.xml

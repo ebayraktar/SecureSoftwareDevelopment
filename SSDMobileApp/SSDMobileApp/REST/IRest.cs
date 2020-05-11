@@ -16,6 +16,7 @@ namespace SSDMobileApp.REST
         Task<MobileResult> Students(string id = "");
         Task<MobileResult> Types(string id = "");
         Task<MobileResult> Users(string id = "");
+        Task<MobileResult> Users(Users data, string id = "");
         Task<MobileResult> Requests(string id = "");
         Task<MobileResult> Requests(Requests data, string id = "");
     }

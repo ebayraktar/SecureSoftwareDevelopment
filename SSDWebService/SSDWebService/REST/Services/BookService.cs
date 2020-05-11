@@ -47,7 +47,8 @@ namespace SSDWebService.REST.Services
                 if (book != null && tempBook != null)
                 {
                     resultData = book;
-                    tempBook = book;
+                    book.BookId = tempBook.BookId;
+                    //tempBook = book;
                     return Constants.Connection.Update(book) > 0 ? true : false;
                 }
                 resultData = "invalid argument: " + data;

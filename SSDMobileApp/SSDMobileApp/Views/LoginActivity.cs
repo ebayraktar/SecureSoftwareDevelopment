@@ -15,7 +15,7 @@ using SSDMobileApp.REST;
 
 namespace SSDMobileApp.Views
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", Icon = "@drawable/library_ico", MainLauncher = true)]
+    [Activity(Label = "Virtual Library App", Theme = "@style/AppTheme.NoActionBar", Icon = "@drawable/library_ico", MainLauncher = true)]
     public class LoginActivity : Activity
     {
         //TextInputEditText currentTIET;

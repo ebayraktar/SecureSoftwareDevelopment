@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="2dp"
+    android:layout_marginBottom="2dp"
+    app:cardBackgroundColor="@color/colorAccent"
+    app:cardCornerRadius="3dp">
+    <LinearLayout
+        android:padding="4dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:padding="4dp"
+            android:orientation="vertical"
+            android:layout_weight="9"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvUsername"
+                android:text="Username"
+                android:textColor="@android:color/white"
+                android:textAppearance="?android:attr/textAppearanceSearchResultTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tvNameSurname"
+                android:text="Name Surname"
+                android:textColor="?android:attr/colorControlNormal"
+                android:textAppearance="?android:attr/textAppearanceSearchResultSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tvRole"
+                android:text="Role"
+                android:textColor="?android:attr/colorControlNormal"
+                android:textAppearance="?android:attr/textAppearanceSearchResultSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/ivChangeRole"
+            android:src="@android:drawable/ic_menu_edit"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -73,7 +73,9 @@
     <Compile Include="Adapters\BookRequestsAdapter.cs" />
     <Compile Include="Adapters\BooksAdapter.cs" />
     <Compile Include="Adapters\RequestsAdapter.cs" />
+    <Compile Include="Adapters\UserAuthoritiesAdapter.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Fragments\AdminFragment.cs" />
     <Compile Include="Fragments\BooksFragment.cs" />
     <Compile Include="Fragments\LibrarianFragment.cs" />
     <Compile Include="Fragments\MainFragment.cs" />
@@ -101,6 +103,7 @@
     <Compile Include="REST\RestManager.cs" />
     <Compile Include="REST\RestService.cs" />
     <Compile Include="Views\AddBookActivity.cs" />
+    <Compile Include="Views\AuthoritiesActivity.cs" />
     <Compile Include="Views\BookRequestsActivity.cs" />
     <Compile Include="Views\LibrarianSettingsActivity.cs" />
     <Compile Include="Views\LoginActivity.cs" />
@@ -459,7 +462,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\librarian_fragment.xml">
+    <AndroidResource Include="Resources\layout\fragment_librarian.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -490,6 +493,21 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\requests_listitem.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\fragment_admin.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\authorities_activity.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\authority_listitem.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

@@ -3,7 +3,7 @@
 	.section	.rodata..L.str.1,"aMS",@progbits,1
 	.type	.L.str.1, @object
 .L.str.1:
-	.asciz	"com.companyname.ssdmobileapp"
+	.asciz	"com.bayraktar.virtuallibrary"
 	.size	.L.str.1, 29
 	.section	.data.application_config,"aw",@progbits
 	.type	application_config, @object
@@ -70,7 +70,7 @@ mono_aot_mode_name:
 	.section	.rodata..L.str.8,"aMS",@progbits,1
 	.type	.L.str.8, @object
 .L.str.8:
-	.asciz	"9f0fb9e7-cc8b-49f2-84c5-9873f0587ef3"
+	.asciz	"9c124a4d-bad6-46dc-a23b-1cc093d94276"
 	.size	.L.str.8, 37
 	.section	.rodata..L.str.9,"aMS",@progbits,1
 	.type	.L.str.9, @object

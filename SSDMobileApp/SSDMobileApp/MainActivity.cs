@@ -22,6 +22,7 @@ namespace SSDMobileApp
         internal MainFragment mainFragment;
         internal BooksFragment booksFragment;
         internal RequestsFragment requestsFragment;
+        internal AdminFragment adminFragment;
         internal LibrarianFragment librarianFragment;
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -152,11 +153,13 @@ namespace SSDMobileApp
             }
             else if (id == Resource.Id.nav_books)
             {
+                /* SECURE 3
                 if (Constants.RoleId != 4)
                 {
                     ShowMessage(this, "Yetkilendirme hatası", "Yönetici hesabıyla istekte bulunamazsınız");
                     return false;
                 }
+                */
                 if (booksFragment == null)
                 {
                     booksFragment = new BooksFragment();
@@ -166,11 +169,13 @@ namespace SSDMobileApp
             }
             else if (id == Resource.Id.nav_requests)
             {
+                /* SECURE 3
                 if (Constants.RoleId != 4)
                 {
                     ShowMessage(this, "Yetkilendirme hatası", "Yönetici hesabıyla istekte bulunamazsınız");
                     return false;
                 }
+                */
                 if (requestsFragment == null)
                 {
                     requestsFragment = new RequestsFragment();
@@ -180,11 +185,13 @@ namespace SSDMobileApp
             }
             else if (id == Resource.Id.nav_librarian)
             {
+                /* SECURE 3
                 if (Constants.RoleId == 4 || Constants.RoleId == 3)
                 {
                     ShowMessage(this, "Yetkilendirme hatası", "Bu sayfaya erişebilmek için yetkiniz yok");
                     return false;
                 }
+                */
                 if (librarianFragment == null)
                 {
                     librarianFragment = new LibrarianFragment();
@@ -199,6 +206,11 @@ namespace SSDMobileApp
                     ShowMessage(this, "Yetkilendirme hatası", "Bu sayfaya erişebilmek için yetkiniz yok");
                     return false;
                 }
+                if (adminFragment == null)
+                {
+                    adminFragment = new AdminFragment();
+                }
+                frm = adminFragment;
                 title = "Admin Paneli";
             }
             else if (id == Resource.Id.nav_exit)

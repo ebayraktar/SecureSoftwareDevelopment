@@ -65,5 +65,9 @@ namespace SSDMobileApp.REST
         {
             return await service.Users(id);
         }
+        public async Task<MobileResult> Users(Users data, string id = "")
+        {
+            return await service.Users(data, id);
+        }
     }
 }

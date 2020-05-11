@@ -7,11 +7,8 @@ namespace SSDWebService.Cryptohraphy
         public static string EncrypteData(string data)
         {
 
-            /*
-            UNSECURE PASSWORD
+            //UNSECURE
             return data;
-            */
-
 
             // MD5CryptoServiceProvider sınıfının bir örneğini oluşturduk.
             MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();

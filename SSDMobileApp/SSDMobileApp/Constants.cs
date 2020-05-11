@@ -27,6 +27,8 @@ namespace SSDMobileApp
         public static readonly string TYPES_URL = BASEADDRESS + "types/";
         public static readonly string USERS_URL = BASEADDRESS + "users/";
 
+        public static readonly string BOOK_EXTRA = "_BOOK_EXTRA";
+
         public static RestManager ServiceManager { get; private set; }
         public static int UserId { get; set; }
         public static int StudentId { get; set; }

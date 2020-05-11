@@ -7,7 +7,7 @@ namespace SSDWebService.Controllers
 {
     public class UsersController : BaseController<Users>
     {
-        public UsersController() : this(new BaseManager(new BaseService()))
+        public UsersController() : this(new UserManager(new UserService()))
         {
 
         }

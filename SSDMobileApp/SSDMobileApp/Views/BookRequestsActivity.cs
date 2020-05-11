@@ -42,7 +42,6 @@ namespace SSDMobileApp.Views
         private async void Initialize()
         {
             requests = await GetRequestsAsync();
-            rcvBookRequests.SetLayoutManager(new LinearLayoutManager(this));
             if (requests == null)
                 return;
             adapter = new BookRequestsAdapter(requests);
@@ -54,6 +53,7 @@ namespace SSDMobileApp.Views
             {
                 Action(e.Position, false);
             };
+            rcvBookRequests.SetLayoutManager(new LinearLayoutManager(this));
             rcvBookRequests.SetAdapter(adapter);
         }
 

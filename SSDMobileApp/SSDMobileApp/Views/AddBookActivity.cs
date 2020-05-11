@@ -30,10 +30,11 @@ namespace SSDMobileApp.Views
 
         List<Authors> authors;
         List<Types> types;
+
+        Books currentBook;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
             SetContentView(Resource.Layout.activity_add_book);
             Toolbar myToolbar = (Toolbar)FindViewById(Resource.Id.toolbar);
             SetSupportActionBar(myToolbar);
@@ -93,6 +94,16 @@ namespace SSDMobileApp.Views
                     AddBookAsync();
                 }
             };
+
+            var json = Intent.GetStringExtra(Constants.BOOK_EXTRA);
+            if (string.IsNullOrEmpty(json))
+                return;
+            var book = Newtonsoft.Json.JsonConvert.DeserializeObject<Books>(json);
+            if (book != null)
+            {
+                currentBook = book;
+                InitBook();
+            }
         }
 
         private async void Initialize()
@@ -112,6 +123,15 @@ namespace SSDMobileApp.Views
             }
         }
 
+        private void InitBook()
+        {
+            etBookName.Text = currentBook.Name;
+            etPageCount.Text = currentBook.Pagecount.ToString();
+            etPoint.Text = currentBook.Point.ToString();
+            spnAuthor.SetSelection(currentBook.AuthorId);
+            spnType.SetSelection(currentBook.TypeId);
+        }
+
         private async void AddBookAsync()
         {
             Books tempBook = new Books
@@ -124,7 +144,7 @@ namespace SSDMobileApp.Views
 
             };
             string message = "Hata oluştu";
-            var result = await Constants.ServiceManager.Books(tempBook);
+            var result = await Constants.ServiceManager.Books(tempBook, currentBook?.BookId.ToString());
             if (result != null && result.OpCode == 0)
             {
                 message = "Kitap başarıyla oluşturuldu";

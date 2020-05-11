@@ -112,6 +112,20 @@ namespace SSDMobileApp.REST
             return await BaseGetRequest(uri);
         }
 
+        public async Task<MobileResult> Users(Users data, string id = "")
+        {
+            var uri = new Uri(Constants.USERS_URL + id);
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(data);
+            if (string.IsNullOrEmpty(id))
+            {
+                return await BasePostRequest(uri, json);
+            }
+            else
+            {
+                return await BasePutRequest(uri, json);
+            }
+        }
+
         private async Task<MobileResult> BaseGetRequest(Uri uri)
         {
             try

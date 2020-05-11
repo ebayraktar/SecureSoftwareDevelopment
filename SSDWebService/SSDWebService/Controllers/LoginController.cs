@@ -29,11 +29,15 @@ namespace SSDWebService.Controllers
             }
             string password = Cryptohraphy.Crypthography.EncrypteData(loginModel.Password);
             Users user = null;
+            #region UNSECURE
             // /*
             string query = $"SELECT * FROM USERS WHERE userName='" + loginModel.Username + "' AND password ='" + password + "';";
             user = Constants.Connection.Query<Users>(query).FirstOrDefault();
             // */
+            #endregion
+            #region SECURE 1
             //user = Constants.Connection.Table<Users>().Where(x => x.UserName.Equals(loginModel.Username) & x.Password.Equals(password)).FirstOrDefault();
+            #endregion
             if (user != null)
             {
                 loginModel.RoleId = user.RoleId.ToString();
