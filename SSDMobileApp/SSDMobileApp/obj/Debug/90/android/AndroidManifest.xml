@@ -10,7 +10,7 @@
     <activity android:label="Yetkiler" android:theme="@style/AppTheme.NoActionBar" android:name="crc648016037127868f67.AuthoritiesActivity" />
     <activity android:label="İstekler" android:theme="@style/AppTheme.NoActionBar" android:name="crc648016037127868f67.BookRequestsActivity" />
     <activity android:label="Kütüphaneci Ayarları" android:theme="@style/AppTheme.NoActionBar" android:name="crc648016037127868f67.LibrarianSettingsActivity" />
-    <activity android:icon="@drawable/library_ico" android:label="@string/app_name" android:theme="@style/AppTheme.NoActionBar" android:name="crc648016037127868f67.LoginActivity">
+    <activity android:icon="@drawable/library_ico" android:label="Virtual Library App" android:theme="@style/AppTheme.NoActionBar" android:name="crc648016037127868f67.LoginActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />

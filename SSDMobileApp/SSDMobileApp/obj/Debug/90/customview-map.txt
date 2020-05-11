@@ -7,7 +7,6 @@ androidx.appcompat.widget.Toolbar;obj\Debug\90\res\layout\activity_book_requests
 androidx.appcompat.widget.Toolbar;obj\Debug\90\res\layout\activity_librarian_settings.xml
 androidx.appcompat.widget.Toolbar;obj\Debug\90\res\layout\app_bar_main.xml
 androidx.appcompat.widget.Toolbar;obj\Debug\90\res\layout\authorities_activity.xml
-androidx.cardview.widget.CardView;obj\Debug\90\res\layout\activity_login.xml
 androidx.cardview.widget.CardView;obj\Debug\90\res\layout\activity_signup.xml
 androidx.cardview.widget.CardView;obj\Debug\90\res\layout\authority_listitem.xml
 androidx.cardview.widget.CardView;obj\Debug\90\res\layout\book_request_listitem.xml
@@ -16,7 +15,6 @@ androidx.cardview.widget.CardView;obj\Debug\90\res\layout\borrows_listitem.xml
 androidx.cardview.widget.CardView;obj\Debug\90\res\layout\fragment_admin.xml
 androidx.cardview.widget.CardView;obj\Debug\90\res\layout\fragment_librarian.xml
 androidx.cardview.widget.CardView;obj\Debug\90\res\layout\fragment_main.xml
-androidx.cardview.widget.CardView;obj\Debug\90\res\layout\librarian_fragment.xml
 androidx.cardview.widget.CardView;obj\Debug\90\res\layout\popup_book_detail.xml
 androidx.cardview.widget.CardView;obj\Debug\90\res\layout\requests_listitem.xml
 androidx.constraintlayout.widget.ConstraintLayout;obj\Debug\90\res\layout\activity_login.xml
@@ -68,7 +66,6 @@ ImageView;obj\Debug\90\res\layout\book_request_listitem.xml
 ImageView;obj\Debug\90\res\layout\books_listitem.xml
 ImageView;obj\Debug\90\res\layout\fragment_admin.xml
 ImageView;obj\Debug\90\res\layout\fragment_librarian.xml
-ImageView;obj\Debug\90\res\layout\librarian_fragment.xml
 ImageView;obj\Debug\90\res\layout\nav_header_main.xml
 include;obj\Debug\90\res\layout\activity_main.xml
 include;obj\Debug\90\res\layout\app_bar_main.xml
@@ -120,7 +117,6 @@ RelativeLayout;obj\Debug\90\res\layout\fragment_admin.xml
 RelativeLayout;obj\Debug\90\res\layout\fragment_books.xml
 RelativeLayout;obj\Debug\90\res\layout\fragment_librarian.xml
 RelativeLayout;obj\Debug\90\res\layout\fragment_main.xml
-RelativeLayout;obj\Debug\90\res\layout\librarian_fragment.xml
 RelativeLayout;obj\Debug\90\res\layout\popup_book_detail.xml
 RelativeLayout;obj\Debug\90\res\layout\requests_listitem.xml
 resources;obj\Debug\90\res\values\colors.xml
@@ -138,7 +134,6 @@ string;obj\Debug\90\res\values\strings.xml
 style;obj\Debug\90\res\values\styles.xml
 style;obj\Debug\90\res\values-v21\styles.xml
 TextView;obj\Debug\90\res\layout\activity_add_book.xml
-TextView;obj\Debug\90\res\layout\activity_book_requests.xml
 TextView;obj\Debug\90\res\layout\activity_librarian_settings.xml
 TextView;obj\Debug\90\res\layout\activity_login.xml
 TextView;obj\Debug\90\res\layout\activity_signup.xml
@@ -149,7 +144,6 @@ TextView;obj\Debug\90\res\layout\borrows_listitem.xml
 TextView;obj\Debug\90\res\layout\fragment_admin.xml
 TextView;obj\Debug\90\res\layout\fragment_librarian.xml
 TextView;obj\Debug\90\res\layout\fragment_main.xml
-TextView;obj\Debug\90\res\layout\librarian_fragment.xml
 TextView;obj\Debug\90\res\layout\nav_header_main.xml
 TextView;obj\Debug\90\res\layout\popup_book_detail.xml
 TextView;obj\Debug\90\res\layout\requests_listitem.xml

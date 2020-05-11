@@ -201,11 +201,13 @@ namespace SSDMobileApp
             }
             else if (id == Resource.Id.nav_admin)
             {
+                /* SECURE 3
                 if (Constants.RoleId == 4 || Constants.RoleId == 3 || Constants.RoleId == 2)
                 {
                     ShowMessage(this, "Yetkilendirme hatası", "Bu sayfaya erişebilmek için yetkiniz yok");
                     return false;
                 }
+                */
                 if (adminFragment == null)
                 {
                     adminFragment = new AdminFragment();
