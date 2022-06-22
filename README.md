@@ -1,6 +1,8 @@
 # SecureSoftwareDevelopment
  2020 SAÜ | Secure Software Development
 
+https://www.youtube.com/watch?v=rOqFUdbTsbc
+
 # RAPOR
 “Virtual Library” uygulaması bir sanal kütüphane programıdır. Kütüphanedeki kitapların yazar, tür, sayfa sayısı gibi bilgilerini içermektedir. Ayrıca kitapların ödünç alınma geçmişini tutmaktadır. Kütüphane sadece öğrencilere hizmet verdiğinden kütüphane personeli ya da yöneticiler istekte bulunamaz.
 
